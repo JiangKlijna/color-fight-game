@@ -1,4 +1,4 @@
-package com.jiangKlijna.cfg
+package com.jiangklijna.cfg
 
 import io.vertx.core.Vertx.vertx
 
