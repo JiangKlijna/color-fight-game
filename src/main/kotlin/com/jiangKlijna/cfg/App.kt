@@ -1,17 +1,24 @@
 package com.jiangklijna.cfg
 
 import io.vertx.core.Vertx.vertx
+import io.vertx.ext.web.Router
+import io.vertx.ext.web.handler.StaticHandler
 
-object App {
+class App {
 
-    @JvmStatic
-    fun main(args:Array<String>) {
+    val vertx = vertx()
 
-        vertx().createHttpServer()
-                .requestHandler { req ->
-                    req.response()
-                            .putHeader("content-type", "text/plain")
-                            .end("Hello from Vert.x")
-                }.listen(8080)
+    fun start() {
+        val r = Router.router(vertx)
+        r.route().handler(StaticHandler.create("html/"))
+        vertx.createHttpServer().requestHandler(r::accept).listen(8080)
     }
+
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            App().start()
+        }
+    }
+
 }
