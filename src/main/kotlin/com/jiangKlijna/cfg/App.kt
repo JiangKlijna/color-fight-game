@@ -11,7 +11,9 @@ class App {
     fun start() {
         val r = Router.router(vertx)
         r.route().handler(StaticHandler.create("html/"))
-        vertx.createHttpServer().requestHandler(r::accept).listen(8080)
+        val server = vertx.createHttpServer()
+        server.websocketHandler(WebSocket.handler)
+        server.requestHandler(r::accept).listen(8080)
     }
 
     companion object {
