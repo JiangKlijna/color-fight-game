@@ -12,11 +12,16 @@ class WebSocket(val id: String, val socket: ServerWebSocket) {
     }
 
     private fun frameHandler(frame: WebSocketFrame) {
+
     }
 
     companion object {
 
         private val clients = ConcurrentHashMap<String, WebSocket>()
+
+        operator fun get(id: String) = clients[id]
+
+        operator fun contains(id: String) = clients.contains(id)
 
         val handler = { socket: ServerWebSocket ->
             val id = socket.binaryHandlerID()
