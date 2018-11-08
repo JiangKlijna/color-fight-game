@@ -6,21 +6,21 @@ import io.vertx.ext.web.handler.StaticHandler
 
 class App {
 
-    val vertx = vertx()
+    private val vertx = vertx()
 
-    fun start() {
+    private val setting = Setting("app.properties")
+
+    fun start(args: Array<String>) {
         val r = Router.router(vertx)
-        r.route().handler(StaticHandler.create("html/"))
+        r.route().handler(StaticHandler.create(setting.static))
         val server = vertx.createHttpServer()
         server.websocketHandler(WebSocket.handler)
-        server.requestHandler(r::accept).listen(8080)
+        server.requestHandler(r::accept).listen(setting.port)
     }
 
     companion object {
         @JvmStatic
-        fun main(args: Array<String>) {
-            App().start()
-        }
+        fun main(args: Array<String>) = App().start(args)
     }
 
 }
