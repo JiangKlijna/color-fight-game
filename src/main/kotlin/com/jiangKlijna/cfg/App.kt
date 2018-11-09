@@ -14,7 +14,7 @@ class App {
         val r = Router.router(vertx)
         r.route().handler(StaticHandler.create(setting.static))
         val server = vertx.createHttpServer()
-        server.websocketHandler(WebSocket.handler)
+        server.websocketHandler(GamePlayer.handler)
         server.requestHandler(r::accept).listen(setting.port)
     }
 

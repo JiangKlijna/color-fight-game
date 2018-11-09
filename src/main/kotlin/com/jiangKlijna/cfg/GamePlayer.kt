@@ -4,7 +4,7 @@ import io.vertx.core.http.ServerWebSocket
 import io.vertx.core.http.WebSocketFrame
 import java.util.concurrent.ConcurrentHashMap
 
-class WebSocket(val id: String, val socket: ServerWebSocket) {
+class GamePlayer(val id: String, val socket: ServerWebSocket) {
 
     init {
         socket.frameHandler(this::frameHandler)
@@ -17,7 +17,7 @@ class WebSocket(val id: String, val socket: ServerWebSocket) {
 
     companion object {
 
-        private val clients = ConcurrentHashMap<String, WebSocket>()
+        private val clients = ConcurrentHashMap<String, GamePlayer>()
 
         operator fun get(id: String) = clients[id]
 
@@ -26,7 +26,7 @@ class WebSocket(val id: String, val socket: ServerWebSocket) {
         val handler = { socket: ServerWebSocket ->
             val id = socket.binaryHandlerID()
             if (id !in clients) {
-                clients[id] = WebSocket(id, socket)
+                clients[id] = GamePlayer(id, socket)
             }
         }
     }
