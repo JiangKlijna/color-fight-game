@@ -6,6 +6,8 @@ import java.util.concurrent.ConcurrentHashMap
 
 class GamePlayer(val id: String, val socket: ServerWebSocket) {
 
+    val room: GameRoom? = null
+
     init {
         socket.frameHandler(this::frameHandler)
         socket.closeHandler { clients.remove(id) }
