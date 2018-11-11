@@ -25,9 +25,11 @@ class GamePlayer(val id: String, val socket: ServerWebSocket) {
 
         operator fun contains(id: String) = clients.contains(id)
 
+        operator fun iterator() = clients.iterator()
+
         val handler = { socket: ServerWebSocket ->
             val id = socket.binaryHandlerID()
-            if (id !in clients) {
+            if (id !in this) {
                 clients[id] = GamePlayer(id, socket)
             }
         }
