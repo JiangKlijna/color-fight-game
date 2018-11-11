@@ -1,0 +1,4 @@
+// simple jquery
+(function () {
+
+})();
