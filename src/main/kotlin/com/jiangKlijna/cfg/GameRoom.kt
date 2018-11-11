@@ -8,6 +8,8 @@ class GameRoom(val title: String, val length: Int) {
 
     fun join(player: GamePlayer) = if (players.size == length) false else players.add(player)
 
+    fun quit(player: GamePlayer) = if (player in players) players.remove(player) else false
+
     fun size() = players.size
 
     fun id() = hashCode()
