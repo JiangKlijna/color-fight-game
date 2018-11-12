@@ -7,7 +7,8 @@ class Setting(filename: String) {
     val map = java.util.Properties()
 
     init {
-        map.load(javaClass.getResourceAsStream(filename))
+        val ins = javaClass.getResourceAsStream(filename)
+        ins?.let {  map.load(it) }
     }
 
     val port by lazy {
