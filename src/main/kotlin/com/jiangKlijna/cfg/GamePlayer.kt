@@ -1,11 +1,16 @@
 package com.jiangklijna.cfg
 
+import com.jiangklijna.cfg.Api.Companion.failure
 import io.vertx.core.http.ServerWebSocket
 import io.vertx.core.http.WebSocketFrame
 import java.util.concurrent.ConcurrentHashMap
+import com.jiangklijna.cfg.Api.Companion.invoke
+import io.vertx.core.json.JsonObject
+import java.lang.Exception
 
 class GamePlayer(val id: String, val socket: ServerWebSocket) {
 
+    val api = Api()
     val room: GameRoom? = null
 
     init {
@@ -14,7 +19,13 @@ class GamePlayer(val id: String, val socket: ServerWebSocket) {
     }
 
     private fun frameHandler(frame: WebSocketFrame) {
-
+        val result = try {
+            val obj = JsonObject(frame.textData())
+            api.invoke(obj)
+        } catch (e: Exception) {
+            failure(e)
+        }
+        socket.writeTextMessage(result.toString())
     }
 
     companion object {
