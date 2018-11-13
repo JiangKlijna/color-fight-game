@@ -13,6 +13,10 @@ class Api {
         const val Success = 0
         const val Failure = 1
 
+        fun success(result: Any) = JsonObject().put("c", Success).put("o", result)
+
+        fun failure(e: Exception) = JsonObject().put("c", Failure).put("m", e.message)
+
         @JvmStatic
         fun Api.invoke(obj: JsonObject): JsonObject {
             return try {
@@ -29,9 +33,9 @@ class Api {
                 }
                 method.isAccessible = true
                 val result = method.invoke(this, args)
-                JsonObject().put("c", Success).put("o", result)
+                success(result)
             } catch (e: Exception) {
-                JsonObject().put("c", Failure).put("m", e.message)
+                failure(e)
             }
         }
     }
