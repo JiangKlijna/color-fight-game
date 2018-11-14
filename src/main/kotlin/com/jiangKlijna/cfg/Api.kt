@@ -5,8 +5,23 @@ import java.lang.Exception
 
 class Api {
 
+    /**
+     * @param pageNum [0-size]
+     * @param pageSize 10
+     * @return list[pageNum*pageSize:(pageNum+1)*pageSize]
+     */
     fun getRooms(pageNum: Int, pageSize: Int): List<GameRoom> {
-        return emptyList()
+        var i = 0
+        val s = pageNum * pageSize
+        val e = (pageNum + 1) * pageSize - 1
+        val list = ArrayList<GameRoom>(pageSize)
+        for (room in GameRoom) {
+            if (i in s..e) {
+                list.add(room.value)
+            }
+            i++
+        }
+        return list
     }
 
     companion object {
