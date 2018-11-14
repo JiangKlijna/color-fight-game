@@ -1,7 +1,6 @@
 package com.jiangklijna.cfg
 
 import io.vertx.core.json.JsonObject
-import java.lang.Exception
 
 class Api {
 

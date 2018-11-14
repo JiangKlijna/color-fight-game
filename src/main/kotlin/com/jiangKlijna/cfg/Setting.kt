@@ -1,7 +1,5 @@
 package com.jiangklijna.cfg
 
-import java.lang.NumberFormatException
-
 class Setting(filename: String) {
 
     val map = java.util.Properties()

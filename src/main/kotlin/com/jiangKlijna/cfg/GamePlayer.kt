@@ -1,12 +1,11 @@
 package com.jiangklijna.cfg
 
 import com.jiangklijna.cfg.Api.Companion.failure
+import com.jiangklijna.cfg.Api.Companion.invoke
 import io.vertx.core.http.ServerWebSocket
 import io.vertx.core.http.WebSocketFrame
-import java.util.concurrent.ConcurrentHashMap
-import com.jiangklijna.cfg.Api.Companion.invoke
 import io.vertx.core.json.JsonObject
-import java.lang.Exception
+import java.util.concurrent.ConcurrentHashMap
 
 class GamePlayer(val id: String, val socket: ServerWebSocket) {
 
