@@ -14,7 +14,10 @@ class GamePlayer(val id: String, val socket: ServerWebSocket) {
 
     init {
         socket.frameHandler(this::frameHandler)
-        socket.closeHandler { clients.remove(id) }
+        socket.closeHandler {
+            room?.quit(this)
+            clients.remove(id)
+        }
     }
 
     private fun frameHandler(frame: WebSocketFrame) {
