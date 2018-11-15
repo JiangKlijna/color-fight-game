@@ -20,6 +20,8 @@ class GameRoom(val title: String, val length: Int) {
 
     operator fun iterator() = players.iterator()
 
+    operator fun invoke() = RoomData(title, length)
+
     companion object {
         private val rooms = ConcurrentSkipListMap<Int, GameRoom>()
 
@@ -34,5 +36,7 @@ class GameRoom(val title: String, val length: Int) {
             rooms[room.id()] = room
             room.join(player)
         }
+
+        data class RoomData(val title: String, val length: Int)
     }
 }
