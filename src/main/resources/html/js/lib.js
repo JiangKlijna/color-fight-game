@@ -1,14 +1,30 @@
 // simple jquery
 var Lib = (function () {
-    let self = {};
-    let El = function (dom) {
+    var El = function (dom) {
         this.dom = dom;
-        this.isArray = dom instanceof Array
     };
-    self.of = function () {
-        if (arguments.length === 0) return new El(null);
-        else if (arguments.length === 1) return new El(arguments[0]);
-        else return new El(Array.from(arguments));
+    El.prototype.kid = function () {
+        var doms = this.dom.children;
+        if (doms.length === 0) return doms;
+        else if (doms.length === 1) return new El(doms[0]);
+        else {
+            var arr = [];
+            for (var i = 0; i < doms.length; i++) {
+                arr.push(new El(doms[i]));
+            }
+            return arr;
+        }
     };
-    return self;
+    El.prototype.one = function (selector) {
+        return new El(this.dom.querySelector(selector));
+    };
+    El.prototype.all = function (selector) {
+        var arr = [];
+        var doms = document.querySelectorAll(selector);
+        for (var i = 0; i < doms.length; i++) {
+            arr.push(new El(doms[i]));
+        }
+        return arr;
+    };
+    return new El(document);
 })();
