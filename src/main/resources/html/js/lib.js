@@ -27,5 +27,14 @@ var Lib = (function () {
         var doms = this.dom().querySelectorAll(selector);
         return El.of(doms);
     };
+    El.prototype.clone = function () {
+        return new El(this.dom());
+    };
+    El.prototype.root = function () {
+        return new El(document);
+    };
+    EL.prototype.equals = function (el) {
+        return el !== null && el.constructor === El && this.dom() === el.dom();
+    };
     return new El(document);
 })();
