@@ -1,5 +1,7 @@
 // simple jquery
 var Lib = (function () {
+    document.style = {};
+    document.classList = [];
     var El = function (dom) {
         var _dom = dom;
         this.dom = function () {
@@ -33,8 +35,23 @@ var Lib = (function () {
     El.prototype.root = function () {
         return new El(document);
     };
-    EL.prototype.equals = function (el) {
+    El.prototype.eq = function (el) {
         return el !== null && el.constructor === El && this.dom() === el.dom();
+    };
+    El.prototype.copy = function (v) {
+        return new El(v ? v : this.dom());
+    };
+    El.prototype.css = function (k, v) {
+        this.dom().style[k] = v;
+        return this;
+    };
+    El.prototype.ac = function (cls) {
+        this.dom().classList.add(cls);
+        return this;
+    };
+    El.prototype.rc = function (cls) {
+        this.dom().classList.remove(cls);
+        return this;
     };
     return new El(document);
 })();
