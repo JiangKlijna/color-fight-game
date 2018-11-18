@@ -42,8 +42,12 @@ var Lib = (function () {
         return new El(v ? v : this.dom());
     };
     El.prototype.css = function (k, v) {
-        this.dom().style[k] = v;
-        return this;
+        if (k === undefined && v === undefined) {
+            return this.dom().style;
+        } else {
+            this.dom().style[k] = v;
+            return this;
+        }
     };
     El.prototype.ac = function (cls) {
         this.dom().classList.add(cls);
