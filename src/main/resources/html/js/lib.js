@@ -53,5 +53,29 @@ var Lib = (function () {
         this.dom().classList.remove(cls);
         return this;
     };
+    El.prototype.html = function (v) {
+        if (v === undefined) {
+            return this.dom().innerHTML;
+        } else {
+            this.dom().innerHTML = v;
+        }
+        return this;
+    };
+    El.prototype.text = function (v) {
+        if (v === undefined) {
+            return this.dom().innerText;
+        } else {
+            this.dom().innerText = v;
+        }
+        return this;
+    };
+    El.prototype.val = function (v) {
+        if (v === undefined) {
+            return this.dom().value;
+        } else {
+            this.dom().value = v;
+        }
+        return this;
+    };
     return new El(document);
 })();
