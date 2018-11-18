@@ -83,5 +83,15 @@ var Lib = (function () {
         }
         return this;
     };
+    El.prototype.attr = function (k, v) {
+        if (k === undefined) {
+            return this;
+        } else if (v === undefined) {
+            return this.dom().getAttribute(k);
+        } else {
+            this.dom().setAttribute(k, v);
+            return this;
+        }
+    };
     return new El(document);
 })();
