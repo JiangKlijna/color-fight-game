@@ -75,13 +75,15 @@ var Lib = (function () {
         }
         return this;
     };
-    El.prototype.val = function (v) {
-        if (v === undefined) {
-            return this.dom().value;
+    El.prototype.field = function (k, v) {
+        if (k === undefined) {
+            return this;
+        } else if (v === undefined) {
+            return this.dom()[k];
         } else {
-            this.dom().value = v;
+            this.dom()[k] = v;
+            return this;
         }
-        return this;
     };
     El.prototype.attr = function (k, v) {
         if (k === undefined) {
