@@ -84,6 +84,16 @@ var Lib = (function () {
         }
         return this;
     };
+    El.prototype.val = function(v) {
+        var dom = this.dom();
+        if (v === undefined) {
+            return dom.getAttribute("value") || dom.value;
+        } else {
+            dom.setAttribute("value", v);
+            dom.value = v;
+        }
+        return this;
+    };
     El.prototype.field = function (k, v) {
         if (k === undefined) {
             return this;
