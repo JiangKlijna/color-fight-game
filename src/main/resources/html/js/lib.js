@@ -22,6 +22,15 @@ var Lib = (function () {
         var doms = this.dom().children;
         return El.of(doms);
     };
+    El.prototype.parent = function () {
+        var doms = this.dom().parentElement;
+        return El.of(doms);
+    };
+    El.prototype.$ = function (selector) {
+        var doms = this.dom().querySelectorAll(selector);
+        if (doms.length === 1) return new El(doms[0]);
+        else El.of(doms);
+    };
     El.prototype.one = function (selector) {
         return new El(this.dom().querySelector(selector));
     };
