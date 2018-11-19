@@ -46,6 +46,12 @@ var Lib = (function () {
     El.prototype.eq = function (el) {
         return el !== null && el.constructor === El && this.dom() === el.dom();
     };
+    El.prototype.next = function () {
+        return this.dom().nextElementSibling;
+    };
+    El.prototype.prev = function () {
+        return this.dom().previousElementSibling;
+    };
     El.prototype.copy = function (v) {
         return new El(v ? v : this.dom());
     };
@@ -118,9 +124,9 @@ var Lib = (function () {
         if (k === undefined) {
             return this;
         } else if (v === undefined) {
-            return dom.dataset ? dom.dataset[k] : dom.getAttribute(k);
+            return dom.dataset ? dom.dataset[k] : dom.getAttribute("data-" + k);
         } else {
-            dom.dataset ? dom.dataset[k] = v : dom.setAttribute(k, v);
+            dom.dataset ? dom.dataset[k] = v : dom.setAttribute("data-" + k, v);
             return this;
         }
     };
