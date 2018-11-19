@@ -113,5 +113,16 @@ var Lib = (function () {
             return this;
         }
     };
+    El.prototype.data = function (k, v) {
+        var dom = this.dom();
+        if (k === undefined) {
+            return this;
+        } else if (v === undefined) {
+            return dom.dataset ? dom.dataset[k] : dom.getAttribute(k);
+        } else {
+            dom.dataset ? dom.dataset[k] = v : dom.setAttribute(k, v);
+            return this;
+        }
+    };
     return new El(html);
 })();
