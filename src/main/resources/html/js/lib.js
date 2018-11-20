@@ -1,6 +1,5 @@
 // simple jquery
 var Lib = (function () {
-    var html = document.getElementsByTagName("html")[0];
     var El = function (dom) {
         var _dom = dom;
         this.dom = function () {
@@ -16,6 +15,9 @@ var Lib = (function () {
             arr.push(new El(doms[i]));
         }
         return arr;
+    };
+    El.html = function () {
+        return document.getElementsByTagName("html")[0];
     };
     El.prototype.kid = function () {
         var doms = this.dom().children;
@@ -41,7 +43,7 @@ var Lib = (function () {
         return new El(this.dom());
     };
     El.prototype.root = function () {
-        return new El(html);
+        return new El(El.html());
     };
     El.prototype.eq = function (el) {
         return el !== null && el.constructor === El && this.dom() === el.dom();
@@ -130,5 +132,5 @@ var Lib = (function () {
             return this;
         }
     };
-    return new El(html);
+    return new El(El.html());
 })();
