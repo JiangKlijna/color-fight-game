@@ -1,4 +1,7 @@
 // api for game server
-(function () {
+var api = (function () {
+    var self = {};
 
+
+    return self;
 })();
