@@ -54,8 +54,13 @@ var Lib = (function () {
     El.prototype.prev = function () {
         return this.dom().previousElementSibling;
     };
-    El.prototype.copy = function (v) {
-        return new El(v ? v : this.dom());
+    El.prototype.append = function (el) {
+        this.dom().append(el.dom());
+        return this;
+    };
+    El.prototype.prepend = function (el) {
+        this.dom().prepend(el.dom());
+        return this;
     };
     El.prototype.css = function (k, v) {
         if (k === undefined) {
@@ -99,7 +104,7 @@ var Lib = (function () {
         }
         return this;
     };
-    El.prototype.val = function(v) {
+    El.prototype.val = function (v) {
         var dom = this.dom();
         if (v === undefined) {
             return dom.getAttribute("value") || dom.value;
