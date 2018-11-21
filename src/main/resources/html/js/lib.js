@@ -75,6 +75,14 @@ var Lib = (function () {
         this.dom().classList.remove(cls);
         return this;
     };
+    El.prototype.ae = function (event, fun) {
+        this.dom().addEventListener(event, fun);
+        return this;
+    };
+    El.prototype.re = function (event, fun) {
+        this.dom().removeEventListener(event, fun);
+        return this;
+    };
     El.prototype.html = function (v) {
         if (v === undefined) {
             return this.dom().innerHTML;
