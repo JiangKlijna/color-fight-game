@@ -1,5 +1,5 @@
-// api for game server
-var api = (function () {
+// connect for game server
+var connect = (function () {
     var self = {};
     var skt = null;
     self.init = function () {
