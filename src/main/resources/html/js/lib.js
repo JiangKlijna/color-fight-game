@@ -145,5 +145,9 @@ var Lib = (function () {
             return this;
         }
     };
+    El.prototype.new = function (tag) {
+        var dom = this.dom().createElement(tag);
+        return new El(dom);
+    };
     return new El(El.html());
 })();
