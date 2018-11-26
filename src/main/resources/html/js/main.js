@@ -1,8 +1,8 @@
 var app = (function () {
     var self = {};
-    self.el = document.getElementById("app");
+    self.el = Lib.one("app");
     self.init = function () {
-        self.el.innerHTML = "";
+        self.el.html("");
     };
     return self;
 })();
