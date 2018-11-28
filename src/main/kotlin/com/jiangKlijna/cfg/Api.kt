@@ -23,6 +23,15 @@ class Api {
         return list
     }
 
+    /**
+     * @param id GameRoom.id()
+     * @return GameRoom.RoomData
+     */
+    fun findRoomById(id: Int): GameRoom.Companion.RoomData? {
+        val room = GameRoom[id]
+        return room?.invoke()
+    }
+
     companion object {
         const val Success = 0
         const val Failure = 1
