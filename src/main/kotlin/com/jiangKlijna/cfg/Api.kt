@@ -28,8 +28,8 @@ class Api {
      * @return GameRoom.RoomData
      */
     fun findRoomById(id: Int): GameRoom.Companion.RoomData? {
-        val room = GameRoom[id]
-        return room?.invoke()
+        val room = GameRoom[id] ?: return null
+        return room()
     }
 
     companion object {
