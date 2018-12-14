@@ -3,7 +3,9 @@ var Connect = function () {
     var skt = null;
     var self = this;
     var _onMessage = function (e) {
-
+        if (self.onMessage != null) {
+            self.onMessage(JSON.parse(e));
+        }
     };
     this.onOpen = function (e) {
         console.log("websocket onopen", e);
@@ -15,7 +17,9 @@ var Connect = function () {
         console.log("websocket onMessage", e);
     };
     this.send = function (obj) {
-
+        if (skt != null) {
+            skt.send(JSON.stringify(obj))
+        }
     };
     this.init = function () {
         skt = new WebSocket("ws://localhost:8080/");
